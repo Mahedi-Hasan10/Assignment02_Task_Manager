@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center class="p-4 bg-success">
+    <h1 class="text-center py-3">Completed Tasks</h1>
+
+    <table class="table">
+        <tr>
+            <th scope="col"> Title</th>
+            <th scope="col">  Description</th>
+            <th scope="col"> Status</th>
+            <th scope="col"> Action</th>
+        </tr>
+            {% for task in completed_tasks %}
+            <tr>
+                <td><h5>{{ task.taskTitle }}</h5></td>
+                <td><p>{{ task.taskDescription|truncatechars:50 }}</p></td>
+                <td><p>
+                    Completed
+                  </p>
+                </td>
+                <td>
+                  <a class="btn btn-danger" href="{% url 'task_delete' task.pk %}">
+                    Delete
+                  </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    
+</center>
+{% endblock %}
